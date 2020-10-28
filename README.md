@@ -36,7 +36,7 @@
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
 | zip_code     | string     | null: false                    |
-| city         | integer    | null: false                    |
+| city         | string     | null: false                    |
 | region_id    | integer    | null: false                    |
 | building     | string     |                                |
 | house_number | string     | null: false                    |
