@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| nickname        | string | null: false |
-| email           | string | null: false |
-| password        | string | null: false |
-| first_name      | string | null: false |
-| last_name       | string | null: false |
-| kana_first_name | string | null: false |
-| kana_last_name  | string | null: false |
-| birthday        | date   | null: false |
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| first_name         | string | null: false |
+| last_name          | string | null: false |
+| kana_first_name    | string | null: false |
+| kana_last_name     | string | null: false |
+| birthday           | date   | null: false |
 
 ### association
 
@@ -20,36 +20,42 @@ has_many :items
 
 ## orders テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| card_number   | integer    | null: false                    |
-| valid_date    | date       | null: false                    |
-| security_code | integer    | null: false                    |
-| zip_code      | integer    | null: false                    |
-| city          | string     | null: false                    |
-| region        | string     | null: false                    |
-| house_number  | integer    | null: false                    |
-| phone_number  | integer    | null: false                    |
-| building      | string     | null: false                    |
-| user          | references | null: false, foreign_key: true |
-| item          | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### association
 
 belongs_to :item
 belongs_to :user
+has_one :address
+
+## addresses
+
+| Column       | Type    | Options     |
+| ------------ | ------- | ----------- |
+| zip_code     | string  | null: false |
+| city         | integer | null: false |
+| region       | string  | null: false |
+| building     | string  |             |
+| house_number | string  | null: false |
+| phone_number | string  | null: false |
+
+### association
+
+belongs_to :order
 
 ## items テーブル
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| image             |            | ActiveStorage                  |
 | title             | string     | null: false                    |
 | description       | text       | null: false                    |
-| category          | string     | null: false                    |
-| condition         | string     | null: false                    |
+| category          | integer    | null: false                    |
+| condition         | integer    | null: false                    |
 | delivery_fee      | integer    | null: false                    |
-| Shipping_location | string     | null: false                    |
+| Shipping_location | integer    | null: false                    |
 | shipment_date     | date       | null: false                    |
 | price             | integer    | null: false                    |
 | user              | references | null: false, foreign_key: true |
