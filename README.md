@@ -15,8 +15,8 @@
 
 ### association
 
-has_many :orders
-has_many :items
+- has_many :orders
+- has_many :items
 
 ## orders テーブル
 
@@ -27,9 +27,9 @@ has_many :items
 
 ### association
 
-belongs_to :item
-belongs_to :user
-has_one :address
+- belongs_to :item
+- belongs_to :user
+- has_one :address
 
 ## addresses
 
@@ -37,7 +37,7 @@ has_one :address
 | ------------ | ---------- | ------------------------------ |
 | zip_code     | string     | null: false                    |
 | city         | integer    | null: false                    |
-| region       | string     | null: false                    |
+| region_id    | integer    | null: false                    |
 | building     | string     |                                |
 | house_number | string     | null: false                    |
 | phone_number | string     | null: false                    |
@@ -45,27 +45,27 @@ has_one :address
 
 ### association
 
-belongs_to :order
+- belongs_to :order
 
 ## items テーブル
 
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| title             | string     | null: false                    |
-| description       | text       | null: false                    |
-| category          | integer    | null: false                    |
-| condition         | integer    | null: false                    |
-| delivery_fee      | integer    | null: false                    |
-| Shipping_location | integer    | null: false                    |
-| shipment_date     | date       | null: false                    |
-| price             | integer    | null: false                    |
-| user              | references | null: false, foreign_key: true |
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| title                | string     | null: false                    |
+| description          | text       | null: false                    |
+| category_id          | integer    | null: false                    |
+| condition_id         | integer    | null: false                    |
+| delivery_fee_id      | integer    | null: false                    |
+| shipping_location_id | integer    | null: false                    |
+| shipment_date_id     | integer    | null: false                    |
+| price                | integer    | null: false                    |
+| user                 | references | null: false, foreign_key: true |
 
 ### association
 
-has_one :user
-has_one :order
-has_many :comments
+- has_one :order
+- has_many :comments
+- belongs_to :user
 
 ## comments テーブル
 
@@ -76,4 +76,4 @@ has_many :comments
 
 ### association
 
-belongs_to :item
+- belongs_to :item
