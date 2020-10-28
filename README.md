@@ -33,14 +33,15 @@ has_one :address
 
 ## addresses
 
-| Column       | Type    | Options     |
-| ------------ | ------- | ----------- |
-| zip_code     | string  | null: false |
-| city         | integer | null: false |
-| region       | string  | null: false |
-| building     | string  |             |
-| house_number | string  | null: false |
-| phone_number | string  | null: false |
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| zip_code     | string     | null: false                    |
+| city         | integer    | null: false                    |
+| region       | string     | null: false                    |
+| building     | string     |                                |
+| house_number | string     | null: false                    |
+| phone_number | string     | null: false                    |
+| order        | references | null: false, foreign_key: true |
 
 ### association
 
@@ -62,6 +63,7 @@ belongs_to :order
 
 ### association
 
+has_one :user
 has_one :order
 has_many :comments
 
