@@ -1,24 +1,71 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column          | Type   | Options     |
+| --------------- | ------ | ----------- |
+| nickname        | string | null: false |
+| email           | string | null: false |
+| password        | string | null: false |
+| first_name      | string | null: false |
+| last_name       | string | null: false |
+| kana_first_name | string | null: false |
+| kana_last_name  | string | null: false |
+| birthday        | date   | null: false |
 
-* Ruby version
+### association
 
-* System dependencies
+has_many :orders
+has_many :items
 
-* Configuration
+## orders テーブル
 
-* Database creation
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| card_number   | integer    | null: false                    |
+| valid_date    | date       | null: false                    |
+| security_code | integer    | null: false                    |
+| zip_code      | integer    | null: false                    |
+| city          | string     | null: false                    |
+| region        | string     | null: false                    |
+| house_number  | integer    | null: false                    |
+| phone_number  | integer    | null: false                    |
+| building      | string     | null: false                    |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
 
-* Database initialization
+### association
 
-* How to run the test suite
+belongs_to :item
+belongs_to :user
 
-* Services (job queues, cache servers, search engines, etc.)
+## items テーブル
 
-* Deployment instructions
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| image             |            | ActiveStorage                  |
+| title             | string     | null: false                    |
+| description       | text       | null: false                    |
+| category          | string     | null: false                    |
+| condition         | string     | null: false                    |
+| delivery_fee      | integer    | null: false                    |
+| Shipping_location | string     | null: false                    |
+| shipment_date     | date       | null: false                    |
+| price             | integer    | null: false                    |
+| user              | references | null: false, foreign_key: true |
 
-* ...
+### association
+
+has_one :order
+has_many :comments
+
+## comments テーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| body   | string     |                                |
+| item   | references | null: false, foreign_key: true |
+
+### association
+
+belongs_to :item
