@@ -6,7 +6,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe "#create" do
-    it 'image,title,description,category,condition,delivery_fee,shipping_location,shipment_date,user_idが存在していれば保存できること' do
+    it 'image,title,description,category,condition,delivery_fee,shipping_location,shipment_dateが存在していれば保存できること' do
       expect(@item).to be_valid
     end
     it 'titleが空では保存できないこと' do
