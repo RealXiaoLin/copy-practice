@@ -1,4 +1,4 @@
-function price() {
+window.addEventListener('load', () => {
   const itemPrice = document.getElementById("item-price");
   const taxPrice = document.getElementById("add-tax-price");
   const profit = document.getElementById("profit");
@@ -19,5 +19,4 @@ function price() {
       profit.innerHTML = finalPrice;
     };
   });
-};
-window.addEventListener("load", price);
+});
