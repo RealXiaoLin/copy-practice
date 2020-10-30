@@ -30,9 +30,7 @@ RSpec.describe User, type: :model do
           expect(@user.errors.full_messages).to include("Email can't be blank")
         end
         it 'emailは@を含まなければ登録できない' do
-          binding.pry
           @user.email = @user.email.gsub(/@/,'')
-          binding.pry
           @user.valid?
           expect(@user.errors.full_messages).to include("Email is invalid")
         end
