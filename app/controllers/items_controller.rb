@@ -23,9 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user == @item.user
-      redirect_to edit_item_path(@item)
-    else
+    if current_user != @item.user
       redirect_to item_path(@item)
     end
   end
