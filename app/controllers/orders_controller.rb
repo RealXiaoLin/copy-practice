@@ -4,18 +4,15 @@ before_action :authenticate_user!
 
 def index
   @item = Item.find(params[:item_id])
-  if current_user != @item.user
-    @order_address = OrderAddress.new
-  else
+  @order_address = OrderAddress.new
+  if current_user == @item.user || @item.order != nil
     redirect_to root_path
   end
   end
 
   def create
-    # binding.pry
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(address_params)
-    # binding.pry
     if @order_address.valid?
       pay_time
       @order_address.save
