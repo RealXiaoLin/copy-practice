@@ -2,13 +2,12 @@ class OrderAddress
   include ActiveModel::Model
   attr_accessor :zip_code, :city, :region_id, :building, :house_number, :phone_number, :item_id, :user_id, :token
 
-  # addressモデルのバリデーション
   with_options presence: true do
+    # addressモデルのバリデーション
     validates :zip_code, format: { with: /\A\d{3}-\d{4}\z/ }
     validates :region_id, numericality: { other_than: 1 } # 都道府県
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } # 市区町村
     validates :house_number # 番地
-    validates :building # 建物名
     validates :phone_number, format: { with: /\A0[0-9]{10,11}\z/ } # 電話番号
     # orderモデルのバリデーション
     validates :user_id
