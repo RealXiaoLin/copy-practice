@@ -4,29 +4,44 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
 
     // 選択した画像を表示する関数
     const createImageHTML = (blob) => {
-       // 画像を表示するためのdiv要素を生成
-      const imageElement = document.createElement('div');
+      let itemImageNum = document.querySelectorAll('.item-image').length
+
+      // 画像を表示するためのdiv要素を生成
+      const itemImage = document.createElement('div');
+      itemImage.setAttribute('class', "item-image")
 
       // 表示する画像を生成
       const blobImage = document.createElement('img');
       blobImage.setAttribute('src', blob);
-      blobImage.setAttribute('width', '300px' );
-      // 生成したHTMLの要素をブラウザに表示させる
-      imageElement.appendChild(blobImage);
-      ImageList.appendChild(imageElement);
+      blobImage.setAttribute('width', '300px');
+
+      // 生成したHTMLの画像要素をブラウザに表示させる
+      itemImage.appendChild(blobImage);
+      ImageList.appendChild(itemImage);
+      if (itemImageNum > 1) {
+        return;
+      } else {
+        // ファイル選択ボタンを生成
+        const inputHTML = document.createElement('input')
+        inputHTML.setAttribute('id', `item-image_${itemImageNum}`)
+        inputHTML.setAttribute('name', 'item[images][]')
+        inputHTML.setAttribute('type', 'file')
+        // 生成したHTMLのinput要素をブラウザに表示させる
+        itemImage.appendChild(inputHTML);
+        inputHTML.addEventListener('change', (e) => {
+            file = e.target.files[0];
+            blob = window.URL.createObjectURL(file);
+
+            createImageHTML(blob)
+        })
+      }
     };
 
     document.getElementById('item-image').addEventListener('change', function(e){
-      // 画像が表示されている場合のみ、すでに存在している画像を削除する
-      const imageContent = document.querySelector('img');
-      if (imageContent){
-        imageContent.remove();
-      }
+        const file = e.target.files[0];
+        const blob = window.URL.createObjectURL(file);
 
-      const file = e.target.files[0];
-      const blob = window.URL.createObjectURL(file);
-
-      createImageHTML(blob);
+        createImageHTML(blob);
     });
   });
 }
