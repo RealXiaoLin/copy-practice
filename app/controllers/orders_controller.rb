@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   private
 
   def address_params
-    params.permit(:zip_code, :city, :region_id, :house_number, :building, :phone_number, :token).merge(item_id: params[:item_id]).merge(user_id: current_user.id)
+    params.permit(:zip_code, :city, :region_id, :house_number, :building, :phone_number, :token).merge(item_id: params[:item_id], user_id: current_user.id)
   end
 
   def pay_time
