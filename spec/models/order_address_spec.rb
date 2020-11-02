@@ -11,6 +11,10 @@ RSpec.describe OrderAddress, type: :model do
         it 'zip_code,region_id,city,building,house_number,phone_number,item_id,user_id,tokenがあれば保存ができること' do
           expect(@order_address).to be_valid
         end
+        it 'buildingがからでも保存ができること' do
+          @order_address.building = ""
+          expect(@order_address).to be_valid
+        end
       end
       context '商品購入手続きがうまくいかないとき' do
         it 'zip_codeが空では登録できないこと' do
@@ -80,6 +84,16 @@ RSpec.describe OrderAddress, type: :model do
         end
         it 'phone_numberが「-」を含む場合には登録できないこと' do
           @order_address.phone_number = 222 - 222_222
+          @order_address.valid?
+          expect(@order_address.errors.full_messages).to include('Phone number is invalid')
+        end
+        it 'phone_numberが英字を含む場合には登録できないこと' do
+          @order_address.phone_number = 'aaaaaaaaaa'
+          @order_address.valid?
+          expect(@order_address.errors.full_messages).to include('Phone number is invalid')
+        end
+        it 'phone_numberが文字を含む場合には登録できないこと' do
+          @order_address.phone_number = 'ああああああああああ'
           @order_address.valid?
           expect(@order_address.errors.full_messages).to include('Phone number is invalid')
         end
