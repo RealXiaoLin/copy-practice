@@ -23,12 +23,12 @@ RSpec.describe OrderAddress, type: :model do
           @order_address.valid?
           expect(@order_address.errors.full_messages).to include('Zip code is invalid')
         end
-        it 'zip_code「-]より前が3桁でなければ登録できないこと' do
+        it 'zip_codeは「-]より前が3桁でなければ登録できないこと' do
           @order_address.zip_code = 1111 - 111
           @order_address.valid?
           expect(@order_address.errors.full_messages).to include('Zip code is invalid')
         end
-        it 'zip_codeが「-]より後が4桁でなければ登録できないこと' do
+        it 'zip_codeは「-]より後が4桁でなければ登録できないこと' do
           @order_address.zip_code = 11 - 11_111
           @order_address.valid?
           expect(@order_address.errors.full_messages).to include('Zip code is invalid')
@@ -37,6 +37,11 @@ RSpec.describe OrderAddress, type: :model do
           @order_address.region_id = nil
           @order_address.valid?
           expect(@order_address.errors.full_messages).to include("Region can't be blank", 'Region is not a number')
+        end
+        it 'region_idが「1」では登録できないこと' do
+          @order_address.region_id = 1
+          @order_address.valid?
+          expect(@order_address.errors.full_messages).to include('Region must be other than 1')
         end
         it 'cityが空では登録できないこと' do
           @order_address.city = nil
@@ -52,11 +57,6 @@ RSpec.describe OrderAddress, type: :model do
           @order_address.city = '横浜市b区'
           @order_address.valid?
           expect(@order_address.errors.full_messages).to include('City is invalid')
-        end
-        it 'buildingが空では登録できないこと' do
-          @order_address.building = nil
-          @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Building can't be blank")
         end
         it 'house_numberが空では登録できないこと' do
           @order_address.house_number = nil
