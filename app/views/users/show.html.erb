@@ -1,0 +1,67 @@
+<%= render "shared/second-header"%>
+
+<div class="registration-main">
+  <div class='form-wrap'>
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        会員情報
+      </h1>
+    </div>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">ニックネーム</label>
+        <%= current_user.nickname %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">メールアドレス</label>
+        <%= current_user.email %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">お名前</label>
+        <%= current_user.last_name + current_user.first_name %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">お名前カナ</label>
+        <%= current_user.kana_last_name + current_user.kana_first_name %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">生年月日</label>
+        <%= current_user.birthday %>
+      </div>
+    </div>
+    <%# クレジットカードの登録はオミット %>
+    <%# <div class="form-group">
+      <div class='form-text-wrap'>
+        <h2>カード情報</h2>
+            【カード番号】
+            <br> %>
+    <%#% "**** **** **** " + @card[:last4] %>
+    <%# カード番号の下4桁を取得 %>
+    <%# <br>
+            【有効期限】
+            <br> %>
+    <%# @card[:exp_month] %>
+    <%# 有効期限の「月」を取得 %>
+    <%# / %>
+    <%# @card[:exp_year] %>
+    <%# 有効期限の「年」を取得 %>
+    <%# </div>
+    </div> %>
+    <%# //クレジットカードの登録はオミット %>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text"><%= link_to "トップへ戻る", root_path %></label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/second-footer"%>

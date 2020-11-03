@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resources :items do
     resources :orders, only: [:index, :create]
   end
+  resources :users, only: [:show]
+
+  # カード登録機能オミット中
+  # resources :cards, only: [:new, :create]
 end
