@@ -34,7 +34,7 @@
     <%# /支払額の表示 %>
 
     <%= form_with url: item_orders_path(@item), id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-    <%= render 'shared/error_messages', model: @order_address %>
+    <%# render 'shared/error_messages', model: @order_address %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
@@ -71,6 +71,11 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
+      <%# 入力に誤りがある際のエラーメッセージ表示 %>
+      <% if @order_address.errors.include?(:token) %>
+      <p style="color: red;"><%= @order_address.errors.full_messages_for(:token).first %>
+        <% end %>
+        <%# //入力に誤りがある際のエラーメッセージ表示 %>
       </div>
     </div>
     <%# /カード情報の入力 %>
@@ -86,6 +91,11 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :zip_code, class:"input-default", id:"postal-code", placeholder:"例）123-4567", maxlength:"8" %>
+        <%# 入力に誤りがある際のエラーメッセージ表示 %>
+        <% if @order_address.errors.include?(:zip_code) %>
+        <p style="color: red;"><%= @order_address.errors.full_messages_for(:zip_code).first %>
+          <% end %>
+          <%# //入力に誤りがある際のエラーメッセージ表示 %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -93,6 +103,11 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:region_id, Region.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%# 入力に誤りがある際のエラーメッセージ表示 %>
+        <% if @order_address.errors.include?(:region_id) %>
+        <p style="color: red;"><%= @order_address.errors.full_messages_for(:region_id).first %>
+          <% end %>
+          <%# //入力に誤りがある際のエラーメッセージ表示 %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -100,6 +115,11 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :city, class:"input-default", id:"city", placeholder:"例）横浜市緑区"%>
+        <%# 入力に誤りがある際のエラーメッセージ表示 %>
+        <% if @order_address.errors.include?(:city) %>
+        <p style="color: red;"><%= @order_address.errors.full_messages_for(:city).first %>
+          <% end %>
+          <%# //入力に誤りがある際のエラーメッセージ表示 %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -107,6 +127,11 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :house_number, class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
+        <%# 入力に誤りがある際のエラーメッセージ表示 %>
+        <% if @order_address.errors.include?(:house_number) %>
+        <p style="color: red;"><%= @order_address.errors.full_messages_for(:house_number).first %>
+          <% end %>
+          <%# //入力に誤りがある際のエラーメッセージ表示 %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -114,6 +139,11 @@
           <span class="form-any">任意</span>
         </div>
         <%= f.text_field :building, class:"input-default", id:"building", placeholder:"例）柳ビル103"%>
+        <%# 入力に誤りがある際のエラーメッセージ表示 %>
+        <% if @order_address.errors.include?(:building) %>
+        <p style="color: red;"><%= @order_address.errors.full_messages_for(:building).first %>
+          <% end %>
+          <%# //入力に誤りがある際のエラーメッセージ表示 %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
@@ -121,6 +151,11 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :phone_number, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
+        <%# 入力に誤りがある際のエラーメッセージ表示 %>
+        <% if @order_address.errors.include?(:phone_number) %>
+        <p style="color: red;"><%= @order_address.errors.full_messages_for(:phone_number).first %>
+          <% end %>
+          <%# //入力に誤りがある際のエラーメッセージ表示 %>
       </div>
     </div>
     <%# /配送先の入力 %>
