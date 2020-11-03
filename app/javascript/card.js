@@ -1,4 +1,4 @@
-if (document.URL.match(/orders/) ) {
+if (document.URL.match(/orders/) || document.URL.match(/cards/) ) {
   const pay = () => {
     Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
     const form = document.getElementById("charge-form");
@@ -28,6 +28,7 @@ if (document.URL.match(/orders/) ) {
         document.getElementById("card-exp-year").removeAttribute("name");
 
         document.getElementById("charge-form").submit();
+        document.getElementById("charge-form").reset();
       });
 
     });
