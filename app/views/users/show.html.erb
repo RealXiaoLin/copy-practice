@@ -37,23 +37,25 @@
         <%= current_user.birthday %>
       </div>
     </div>
-    <div class="form-group">
+    <%# クレジットカードの登録はオミット %>
+    <%# <div class="form-group">
       <div class='form-text-wrap'>
         <h2>カード情報</h2>
             【カード番号】
-            <br>
-            <%= "**** **** **** " + @card[:last4] %>
+            <br> %>
+            <%#% "**** **** **** " + @card[:last4] %>
             <%# カード番号の下4桁を取得 %>
-            <br>
+            <%# <br>
             【有効期限】
-            <br>
-            <%= @card[:exp_month] %>
+            <br> %>
+            <%# @card[:exp_month] %>
             <%# 有効期限の「月」を取得 %>
-            /
-            <%= @card[:exp_year] %>
+            <%# / %>
+            <%# @card[:exp_year] %>
             <%# 有効期限の「年」を取得 %>
-      </div>
-    </div>
+      <%# </div>
+    </div> %>
+    <%# //クレジットカードの登録はオミット %>
   </div>
 </div>
 
