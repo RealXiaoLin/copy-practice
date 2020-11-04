@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create]
   end
   resources :users, only: [:show]
-
+  resources :categories, only:[:index]
+  get '/categories/search', to: 'categories#search'
   # カード登録機能オミット中
   # resources :cards, only: [:new, :create]
 end
