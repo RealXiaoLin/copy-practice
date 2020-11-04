@@ -1,0 +1,24 @@
+<%= render "shared/header" %>
+
+<h1>
+  カテゴリー検索
+</h1>
+<%= form_with url: categories_search_path, local: true, method: :get do |f| %>
+<%= f.label :category_id, 'カテゴリー' %>
+<%# f.collection_select :category_id, @item, :category_id, :category_id,  include_blank: '指定なし' %>
+<%= f.collection_select(:category_id, Category.all, :id, :name, {}) %>
+<br>
+<%= f.label :price, '価格：' %>
+<%= f.radio_button :price_lteq, '' %>
+指定なし
+<%= f.radio_button :price_lteq, '1000' %>
+1000円以下
+<%= f.radio_button :price_lteq, '2500' %>
+2500円以下
+<%= f.radio_button :price_lteq, '5000' %>
+5000円以下
+<br>
+<br>
+<%= f.submit '検索' %>
+<% end %>
+<%= render "shared/footer" %>
