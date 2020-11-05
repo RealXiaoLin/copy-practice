@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get '/categories/search', to: 'categories#search'
   resources :items do
     resources :orders, only: [:index, :create]
+    collection do
+      get 'search'
+    end
   end
   resources :users, only: [:show]
   resources :categories, only:[:index]
