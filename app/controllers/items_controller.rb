@@ -45,6 +45,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    if searchKeyword_params[:searchKeyword] != ""
+    @items = Item.where(['title LIKE ?', "%#{searchKeyword_params[:searchKeyword]}%"]).order(updated_at: 'DESC')
+    else
+      redirect_to root_path #検索結果画面から空欄で検索してもトップページへ戻るので注意。
+    end
+  end
+
   private
 
   def find_item
@@ -53,5 +61,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:title, :description, :category_id, :condition_id, :delivery_fee_id, :shipping_location_id, :shipment_date_id, :price, images: []).merge(user_id: current_user.id)
+  end
+
+  def searchKeyword_params
+    params.permit(:searchKeyword)
   end
 end
